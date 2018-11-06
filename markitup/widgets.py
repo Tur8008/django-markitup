@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 import posixpath
 from django import forms
 from django.contrib.admin.widgets import AdminTextareaWidget
-from django.core.urlresolvers import NoReverseMatch, reverse
+from django.urls import NoReverseMatch, reverse
 from django.template.loader import render_to_string
 from django.utils.safestring import mark_safe
 from markitup import settings
@@ -68,7 +68,7 @@ class MarkItUpWidget(MarkupTextarea):
             js=js_media)
     media = property(_media)
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         html = super(MarkItUpWidget, self).render(name, value, attrs)
 
         final_attrs = self.build_attrs(attrs)
